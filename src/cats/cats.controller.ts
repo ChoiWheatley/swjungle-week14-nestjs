@@ -25,7 +25,7 @@ export class CatsController {
 
   @Get(':id')
   findOne(@Param('id', new CatByIdPipe()) id: number): string {
-    return `meowingtone #${id}`;
+    return this.catsService.findOne(id);
   }
 
   @Get('breed')
