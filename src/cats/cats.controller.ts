@@ -9,9 +9,13 @@ import {
 import { CreateCatDto } from './create-cat.dto';
 import { CatsService } from './cats-service';
 import { Cat } from './interfaces/cat.interface';
+import { CatByIdPipe } from './cat-by-id/cat-by-id.pipe';
 
 @Controller('cats')
 export class CatsController {
+  /**
+   * @param catsService 자동으로 주입되는 서비스
+   */
   constructor(private catsService: CatsService) {}
 
   @Get()
@@ -20,7 +24,7 @@ export class CatsController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): string {
+  findOne(@Param('id', new CatByIdPipe()) id: number): string {
     return `meowingtone #${id}`;
   }
 
